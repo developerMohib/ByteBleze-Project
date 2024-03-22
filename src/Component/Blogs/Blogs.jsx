@@ -1,6 +1,5 @@
-import React from 'react';
+
 import Blog from '../Blog/Blog';
-import Navber from '../Navber/Navber';
 
 const Blogs = () => {
     return (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
+import './Navber.css'
 const Navber = () => {
 
     const [theme, setTheme] = useState('light');
@@ -28,9 +28,9 @@ const Navber = () => {
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1 font-bold text-xl">
-            <Link to = '/'  className="mx-4"> Home </Link>
-            <Link to = '/blogs' className="mx-4"> Blogs </Link>
-            <Link to = '/booksmarks' className="mx-4"> Booksmarks </Link>
+            <NavLink to = '/'  className= { ({isActice}) => isActice ? 'text-primary' : 'text-secondary' } > Home </NavLink>
+            <NavLink to = '/blogs' className= { ({isActice}) => isActice ? 'text-primary' : 'text-secondary' }> Blogs </NavLink>
+            <NavLink to = '/booksmarks' className= { ({isActice}) => isActice ? 'text-primary' : 'text-secondary' }> Booksmarks </NavLink>
           </ul>
           <div>
             <label className="swap swap-rotate">

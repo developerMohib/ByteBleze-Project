@@ -1,15 +1,10 @@
-import React from 'react';
-import Navber from '../Navber/Navber';
-import Blogs from '../Blogs/Blogs';
-
+import React from "react";
 const Home = () => {
-    return (
-        <div >
-            <Navber> </Navber>
-            <h3>This is from Home Page</h3>
-            <Blogs> </Blogs>
-        </div>
-    );
+  return (
+    <div>
+      <h3>This is from Home Page</h3>
+    </div>
+  );
 };
 
 export default Home;

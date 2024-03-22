@@ -1,10 +1,31 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+// import React from "react";
+import ReactDOM from "react-dom/client";
+// import App from "./App.jsx";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./index.css";
+import Home from "./Component/Home/Home";
+import Blogs from "./Component/Blogs/Blogs";
+import Booksmarks from "./Component/Booksmarks/Booksmarks";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home> </Home>,
+  },
+  {
+    path: '/blogs',
+    element: <Blogs> </Blogs>
+  },
+  {
+    path: '/booksmarks',
+    element: <Booksmarks> </Booksmarks>
+  }
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <>
+    {/* <App /> */}
+    <RouterProvider router={router} />
+  </>
+);

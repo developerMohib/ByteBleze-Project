@@ -2,8 +2,8 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div>
-            <h1>This is form Footer</h1>
+        <div className='py-5 text-center bg-base-300' >
+            <h1>Copyright &copy; 2024 - All right reserved by ByteBlaze</h1>
         </div>
     );
 };

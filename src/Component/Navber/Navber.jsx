@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { LuMenu } from "react-icons/lu";
+import { IoClose } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import './Navber.css'
 const Navber = () => {
 
     const [theme, setTheme] = useState('light');
+    const [open, setOpen] = useState(false)
+
+    useEffect( ()=> {
+      const localTheme = localStorage.getItem('theme');
+      setTheme(localTheme)
+    },[])
+
     useEffect(() => {
         localStorage.setItem('theme', theme);
-        const localTheme = localStorage.getItem('theme');
-        document.querySelector('html').setAttribute("data-theme", localTheme)
+        // const localTheme = localStorage.getItem('theme');
+        document.querySelector('html').setAttribute("data-theme", theme);    
     },[theme])
 
     const handleTheme = (e) =>{
@@ -20,14 +29,22 @@ const Navber = () => {
     }
     console.log(theme)
 
+    // const handleMenu = () => {
+    //   console.log('helo')
+    // }
+
   return (
     <div>
-      <div className="navbar bg-base-100 shadow-lg px-10">
+      <div className="navbar bg-base-100 shadow-lg px-10 ">
+      <div className="text-2xl md:hidden" onClick={ () => setOpen(!open)} >  
+      {open === true ? <IoClose /> : <LuMenu /> }
+      
+      </div>
         <div className="flex-1">
           <a href="" className="text-primary text-2xl gap-0 font-bold "> Byte<span className="text-secondary" >Blaze</span>  </a>
         </div>
-        <div className="flex-none">
-          <ul className="menu menu-horizontal px-1 font-bold text-xl">
+        <div className="md:flex-none">
+          <ul className={`menu menu-horizontal px-1 font-bold text-xl${open ? ' ' : 'hidden'}  `}>
             <NavLink to = '/'  className= { ({isActice}) => isActice ? 'text-primary' : 'text-secondary' } > Home </NavLink>
             <NavLink to = '/blogs' className= { ({isActice}) => isActice ? 'text-primary' : 'text-secondary' }> Blogs </NavLink>
             <NavLink to = '/booksmarks' className= { ({isActice}) => isActice ? 'text-primary' : 'text-secondary' }> Booksmarks </NavLink>

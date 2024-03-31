@@ -1,0 +1,17 @@
+.animate-gradient{
+    background: 300;
+    -webkit-animation: animetedgradient 6s ease infinite alternate;
+    -moz-animation: animetedgradient 6s ease infinite alternate;
+    animation:animetedgradient 6s ease infinite alternate;
+}
+@keyframes animetedgradient {
+    0%{
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}

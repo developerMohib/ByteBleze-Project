@@ -1,4 +1,5 @@
-import React from "react";
+
+import { Link } from "react-router-dom";
 
 const Booksmarks = () => {
   return (
@@ -7,7 +8,7 @@ const Booksmarks = () => {
         <h1 className="text-5xl font-bold">
           Welcome to <span>ByteBlaze</span>{" "}
         </h1>
-        <button className="btn btn-primary">Read More</button>
+        <Link to = '/blogs' > <button className="btn btn-outline mx-3">Read Blog</button> </Link>
       </div>
     </div>
   );

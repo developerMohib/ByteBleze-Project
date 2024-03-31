@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { LuMenu } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
-import './Navber.css'
+import { Link, NavLink } from "react-router-dom";
+import './Navber.css';
 const Navber = () => {
 
     const [theme, setTheme] = useState('light');
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(true);
 
     useEffect( ()=> {
       const localTheme = localStorage.getItem('theme');
-      setTheme(localTheme)
-    },[])
+      setTheme(localTheme);
+    },[]);
 
     useEffect(() => {
-        localStorage.setItem('theme', theme);
-        // const localTheme = localStorage.getItem('theme');
+      localStorage.setItem('theme', theme);
+      // const localTheme = localStorage.getItem('theme');
         document.querySelector('html').setAttribute("data-theme", theme);    
-    },[theme])
+    },[theme]);
 
     const handleTheme = (e) =>{
         if(e.target.checked){
@@ -27,7 +27,7 @@ const Navber = () => {
             setTheme('light');
         }
     }
-    console.log(theme)
+    console.log(theme);
 
     // const handleMenu = () => {
     //   console.log('helo')
@@ -35,23 +35,25 @@ const Navber = () => {
 
   return (
     <div>
-      <div className="navbar bg-base-100 shadow-lg px-10 ">
+      <div className="navbar bg-base-100 shadow-lg fixed z-10 px-10">
       <div className="text-2xl md:hidden" onClick={ () => setOpen(!open)} >  
       {open === true ? <IoClose /> : <LuMenu /> }
       
       </div>
         <div className="flex-1">
-          <a href="" className="text-primary text-2xl gap-0 font-bold "> Byte<span className="text-secondary" >Blaze</span>  </a>
+          <Link to = "/" className="text-primary text-2xl gap-0 font-bold "> Byte<span className="text-secondary" >Blaze</span> </Link>
         </div>
         <div className="md:flex-none">
-          <ul className={`menu menu-horizontal px-1 font-bold text-xl${open ? ' ' : 'hidden'}  `}>
-            <NavLink to = '/'  className= { ({isActice}) => isActice ? 'text-primary' : 'text-secondary' } > Home </NavLink>
-            <NavLink to = '/blogs' className= { ({isActice}) => isActice ? 'text-primary' : 'text-secondary' }> Blogs </NavLink>
-            <NavLink to = '/booksmarks' className= { ({isActice}) => isActice ? 'text-primary' : 'text-secondary' }> Booksmarks </NavLink>
+          <ul className={`menu menu-horizontal px-1 font-bold text-xl ${open ? ' ' : 'hidden'}  `}>
+
+            <NavLink to = '/'  className= { ({isActice}) => isActice ? 'text-secondary underline' : 'font-bold' } > Home </NavLink>
+
+            <NavLink to = '/blogs' className= { ({isActice}) => isActice ? 'text-secondary underline' : 'font-bold' } > Blogs </NavLink>
+
+            <NavLink to = '/booksmarks' className= { ({isActice}) => isActice ? 'text-secondary underline' : 'font-bold' } > Booksmarks </NavLink>
           </ul>
           <div>
             <label className="swap swap-rotate">
-              {/* this hidden checkbox controls the state */}
               <input
               onChange={handleTheme}
                 type="checkbox"

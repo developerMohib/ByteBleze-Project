@@ -4,12 +4,12 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const Blogs = () => {
     const blogs = useLoaderData();
-    console.log(blogs,'blogs');
+    // console.log(blogs,'blogs');
     const { id } = blogs;
     return (
         <div className="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
         <Link
-          to={`blog${id}`}
+         to = {`/${id}`}
           className="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 dark:bg-gray-50"
         >
           <img

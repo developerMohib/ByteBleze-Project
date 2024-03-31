@@ -8,11 +8,13 @@ import Home from "./Component/Home/Home";
 import Blogs from "./Component/Blogs/Blogs";
 import Booksmarks from "./Component/Booksmarks/Booksmarks";
 import HeaderFooter from "./Component/HeaderFooter/HeaderFooter";
+import ErrorPage from "./ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HeaderFooter> </HeaderFooter>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/',
@@ -20,7 +22,10 @@ const router = createBrowserRouter([
       },
       {
         path: '/blogs',
-        element: <Blogs> </Blogs>
+        element: <Blogs> </Blogs>,
+        loader: async () => {
+          return fetch(`https://dev.to/api/articles?per_page=5&&top=7`);
+        },
       },
       {
         path: '/booksmarks',

@@ -5,11 +5,12 @@ import { Link, useLoaderData } from 'react-router-dom';
 const Blogs = () => {
     const blogs = useLoaderData();
     // console.log(blogs,'blogs');
-    const { id } = blogs;
+    const { id } = blogs[0];
     return (
         <div className="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
+
         <Link
-         to = {`/${id}`}
+         to = {`/blog/${id}`}
           className="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 dark:bg-gray-50"
         >
           <img
@@ -28,11 +29,12 @@ const Blogs = () => {
               {blogs[0].description}
             </p>
             <span className="text-xs dark:text-gray-600">
-                {/* {new Date().toLocaleDateString()} */}
                 {blogs[0].published_at}
               </span>
           </div>
+
         </Link>
+
         <div className="md:grid grid-cols-3 gap-8 justify-center">
           {
             blogs.map(blog => <Blog key={blog.id} blog={blog} > </Blog> )

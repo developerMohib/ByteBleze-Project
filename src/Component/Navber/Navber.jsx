@@ -2,60 +2,87 @@ import { useEffect, useState } from "react";
 import { LuMenu } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
-import './Navber.css';
+import "./Navber.css";
 const Navber = () => {
+  const [theme, setTheme] = useState("light");
+  const [open, setOpen] = useState(true);
 
-    const [theme, setTheme] = useState('light');
-    const [open, setOpen] = useState(true);
+  useEffect(() => {
+    const localTheme = localStorage.getItem("theme");
+    setTheme(localTheme);
+  }, []);
 
-    useEffect( ()=> {
-      const localTheme = localStorage.getItem('theme');
-      setTheme(localTheme);
-    },[]);
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    // const localTheme = localStorage.getItem('theme');
+    document.querySelector("html").setAttribute("data-theme", theme);
+  }, [theme]);
 
-    useEffect(() => {
-      localStorage.setItem('theme', theme);
-      // const localTheme = localStorage.getItem('theme');
-        document.querySelector('html').setAttribute("data-theme", theme);    
-    },[theme]);
-
-    const handleTheme = (e) =>{
-        if(e.target.checked){
-            setTheme('synthwave');
-        }
-        else{
-            setTheme('light');
-        }
+  const handleTheme = (e) => {
+    if (e.target.checked) {
+      setTheme("synthwave");
+    } else {
+      setTheme("light");
     }
-    console.log(theme);
+  };
+  // console.log(theme);
 
-    // const handleMenu = () => {
-    //   console.log('helo')
-    // }
+  // const handleMenu = () => {
+  //   console.log('helo')
+  // }
 
   return (
     <div>
       <div className="navbar bg-base-100 shadow-lg fixed z-10 px-10">
-      <div className="text-2xl md:hidden" onClick={ () => setOpen(!open)} >  
-      {open === true ? <IoClose /> : <LuMenu /> }
-      
-      </div>
+        <div className="text-2xl md:hidden" onClick={() => setOpen(!open)}>
+          {open === true ? <IoClose /> : <LuMenu />}
+        </div>
         <div className="flex-1">
-          <Link to = "/" className="text-primary text-2xl gap-0 font-bold "> Byte<span className="text-secondary" >Blaze</span> </Link>
+          <Link to="/" className="text-primary text-2xl gap-0 font-bold ">
+            {" "}
+            Byte<span className="text-secondary">Blaze</span>{" "}
+          </Link>
         </div>
         <div className="md:flex-none">
-          <ul className={`menu menu-horizontal px-1 font-bold text-xl ${open ? ' ' : 'hidden'}  `}>
+          <ul
+            className={`menu menu-horizontal px-1 font-bold text-xl ${
+              open ? " " : "hidden"
+            }  `}
+          >
+            <NavLink
+              to="/"
+              className={({isActive}) =>
+              isActive ? 'text-secondary underline' : 'font-bold'
+            }
+            >
+              {" "}
+              Home{" "}
+            </NavLink>
 
-            <NavLink to = '/'  className= { ({isActice}) => isActice ? 'text-secondary underline' : 'font-bold' } > Home </NavLink>
+            <NavLink
+              to="/blogs"
+              className={({isActive}) =>
+              isActive ? 'text-secondary underline' : 'font-bold'
+            }
+            >
+              {" "}
+              Blogs{" "}
+            </NavLink>
 
-            <NavLink to = '/blogs' className= { ({isActice}) => isActice ? 'text-secondary underline' : 'font-bold' } > Blogs </NavLink>
-
-            <NavLink to = '/booksmarks' className= { ({isActice}) => isActice ? 'text-secondary underline' : 'font-bold' } > Booksmarks </NavLink>
+            <NavLink
+              to="/booksmarks"
+              className={({isActive}) =>
+                isActive ? 'text-secondary underline' : 'font-bold'
+              }
+            >
+              {" "}
+              Booksmarks{" "}
+            </NavLink>
           </ul>
           <div>
             <label className="swap swap-rotate">
               <input
-              onChange={handleTheme}
+                onChange={handleTheme}
                 type="checkbox"
                 className="theme-controller"
                 value="synthwave"

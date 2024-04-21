@@ -1,7 +1,16 @@
 
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Booksmarks = () => {
+
+  const [ bookmarksBlog, setBookmarksBlog ] = useState([]);
+  useEffect(() => {
+    const findBlog = localStorage.getItem('blogs');
+    setBookmarksBlog(findBlog)
+  },[] )
+  console.log(bookmarksBlog, 'booksmarks blog')
+
   return (
     <div className="h-[80vh] flex justify-center items-center">
       <div className=" text-center md:w-2/5 mx-auto space-y-5">

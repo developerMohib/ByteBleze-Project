@@ -3,6 +3,7 @@ import Tabs from "./Tabs/Tabs";
 
 const SingleBlog = () => {
   const singleBlog = useLoaderData();
+  console.log(singleBlog, 'singleblog')
 const {title, reading_time_minutes, positive_reactions_count, readable_publish_date,comments_count } = singleBlog;
   return (
     <div>
